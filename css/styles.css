@@ -1,4 +1,4 @@
-/* repraesent.com v0.2.7 — Design tokens & base
+/* repraesent.com v0.2.8 — Design tokens & base
  *
  * TYPOGRAPHY SCALE
  * H1 (hero):    clamp(3rem, 6vw, 4.5rem), lh 1.1, serif
@@ -292,19 +292,21 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 1.25rem;
+  background: #18181b;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
   font: inherit;
   font-weight: 500;
-  color: var(--bg-primary);
-  background: var(--text-primary);
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-  background: var(--accent-hover);
+  background: #000;
+  color: #fff;
+  opacity: 0.9;
 }
 
 .btn:focus-visible {
@@ -512,6 +514,10 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   gap: 1.25rem;
 }
 
+.product-cards.grid-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .product-card {
   display: flex;
   flex-direction: column;
@@ -544,10 +550,6 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   color: var(--text-primary);
   font-size: 0.95rem;
   margin: 0.5rem 0 0;
-}
-
-.main-product-card .btn {
-  margin-top: 1rem;
 }
 
 .included-note {
@@ -661,6 +663,61 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   line-height: 1.5;
 }
 
+/* How it works — horizontal flow cards */
+.flow-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+.flow-card {
+  flex: 1 1 140px;
+  min-width: 120px;
+  max-width: 200px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  background: var(--bg-primary);
+}
+
+.flow-card-icon {
+  display: inline-flex;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.flow-card h3 {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+}
+
+.flow-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.flow-arrow-svg {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.flow-arrow-svg svg {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+}
+
 /* Story section — 2-column editorial */
 .story-section {
   border-top: 1px solid var(--border);
@@ -721,6 +778,48 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   line-height: 1.5;
 }
 
+.story-container-narrow {
+  max-width: 800px;
+}
+
+.story-body-single {
+  max-width: 800px;
+}
+
+.story-body-single p {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+.story-body-single p:last-child {
+  margin-bottom: 0;
+}
+
+.industry-copy p {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+.industry-copy p:first-child {
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.industry-copy p:last-child {
+  margin-bottom: 0;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
 .story-resolution {
   font-family: "Lora", Georgia, serif;
   font-size: 1.25rem;
@@ -754,8 +853,27 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 
 .pricing-hero-card .pricing-hero-desc {
   color: var(--text-secondary);
+  margin: 0 0 0.75rem;
+  line-height: 1.6;
+}
+
+.pricing-hero-card .pricing-hero-tagline {
+  color: var(--text-secondary);
   margin: 0 0 1rem;
   line-height: 1.6;
+  font-size: 1rem;
+}
+
+.main-product-card.pricing-hero-card {
+  padding: 2.5rem 3rem;
+}
+
+.main-product-card .pricing-hero-title {
+  font-size: 1.75rem;
+}
+
+.main-product-card .pricing-hero-desc {
+  font-size: 1.1rem;
 }
 
 .pricing-hero-card .pricing-hero-features {
@@ -877,6 +995,13 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.client-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .client-card-image span {
@@ -1107,8 +1232,21 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   margin: 0 0 0.75rem;
 }
 
+.audience-block-brands p,
+.audience-block-retailers p {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.audience-block-brands p:last-child,
+.audience-block-retailers p:last-child {
+  margin-bottom: 0;
+}
+
 .audience-intro {
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.65;
@@ -1654,6 +1792,19 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 
   .services-cards {
     grid-template-columns: 1fr;
+  }
+
+  .product-cards.grid-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flow-arrow-svg {
+    transform: rotate(90deg);
   }
 
   .faq-items {
