@@ -1,4 +1,4 @@
-/* repraesent.com v0.2.9 — Design tokens & base
+/* repraesent.com v0.3.0 — Design tokens & base
  *
  * TYPOGRAPHY SCALE
  * H1 (hero):    clamp(3rem, 6vw, 4.5rem), lh 1.1, serif
@@ -34,8 +34,8 @@
   --max-width: 1280px;
   --content-max: 1280px;
   --pad-x: 1.5rem;
-  --section-gap: 7.5rem;
-  --section-gap-mobile: 5rem;
+  --section-gap: 100px;
+  --section-gap-mobile: 60px;
   /* Spacing scale */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -54,6 +54,69 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Scroll motion */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered card animation */
+.card.fade-up,
+.product-card.fade-up,
+.flow-card.fade-up,
+.client-card.fade-up {
+  transition-delay: 0.1s;
+}
+
+.card.fade-up:nth-child(2),
+.product-card.fade-up:nth-child(2),
+.client-card.fade-up:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.card.fade-up:nth-child(3),
+.product-card.fade-up:nth-child(3),
+.client-card.fade-up:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.card.fade-up:nth-child(4),
+.product-card.fade-up:nth-child(4),
+.client-card.fade-up:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.card.fade-up:nth-child(5),
+.product-card.fade-up:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.card.fade-up:nth-child(6),
+.product-card.fade-up:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+.card.fade-up:nth-child(7),
+.product-card.fade-up:nth-child(7) {
+  transition-delay: 0.7s;
+}
+
+.card.fade-up:nth-child(8),
+.product-card.fade-up:nth-child(8) {
+  transition-delay: 0.8s;
+}
+
+.flow-card.fade-up:nth-child(1) { transition-delay: 0.1s; }
+.flow-card.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.flow-card.fade-up:nth-child(5) { transition-delay: 0.3s; }
+.flow-card.fade-up:nth-child(7) { transition-delay: 0.4s; }
 
 body {
   margin: 0;
@@ -97,9 +160,17 @@ a:hover {
 
 .container {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--pad-x);
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 1300px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .container.container-wide {
@@ -118,8 +189,8 @@ a:hover {
 }
 
 /* Typography */
-h1, h2, h3, .font-serif {
-  font-family: "Lora", Georgia, serif;
+h1, h2, h3, .serif, .font-serif {
+  font-family: 'Instrument Serif', serif;
 }
 
 h1 {
@@ -274,7 +345,8 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   font-size: clamp(32px, 4vw, 64px);
   white-space: nowrap;
   text-wrap: balance;
-  margin-bottom: 1.75rem;
+  line-height: 1.1;
+  margin-bottom: 24px;
 }
 
 @media (max-width: 768px) {
@@ -320,8 +392,15 @@ button.btn {
 .btn:hover,
 a.btn:hover,
 button.btn:hover {
+  transform: translateY(-1px);
   opacity: 0.9;
   color: white;
+}
+
+.btn:active,
+a.btn:active,
+button.btn:active {
+  transform: translateY(0);
 }
 
 .btn:focus-visible {
@@ -330,8 +409,16 @@ button.btn:hover {
 }
 
 /* Sections */
-.section {
-  padding: var(--section-gap) 0;
+section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 }
 
 .section-header {
@@ -391,7 +478,7 @@ button.btn:hover {
 }
 
 .problem-resolution {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.35rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -401,7 +488,7 @@ button.btn:hover {
 
 .positioning-statement {
   margin: 1.5rem 0 0;
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -442,11 +529,14 @@ button.btn:hover {
 }
 
 .card {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.5rem;
-  background: var(--bg-primary);
-  box-shadow: none;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 24px;
+  background: white;
+}
+
+.card:hover {
+  border-color: #d0d0d0;
 }
 
 .included-cards .included-group.card {
@@ -783,7 +873,7 @@ button.btn:hover {
 }
 
 .story-section .story-heading {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(2rem, 3.5vw, 2.6rem);
   font-weight: 400;
   line-height: 1.2;
@@ -824,7 +914,7 @@ button.btn:hover {
 
 .story-section .story-support p {
   margin: 0;
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -836,23 +926,24 @@ button.btn:hover {
 }
 
 .story {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
-  max-width: 800px;
+  font-size: 20px;
+  line-height: 1.7;
+  max-width: 780px;
   margin: 0 auto;
-  line-height: 1.6;
-  color: var(--text-secondary);
+  color: #2a2a2a;
 }
 
 .story h2 {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-style: normal;
   font-size: 32px;
   margin-bottom: 24px;
 }
 
 .story p {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .story p:last-child {
@@ -860,21 +951,29 @@ button.btn:hover {
 }
 
 .story-body-single {
-  max-width: 800px;
+  max-width: 780px;
 }
 
 .story-body-single.story {
   font-style: italic;
 }
 
+.story-body-single.story p {
+  margin-bottom: 18px;
+  color: #2a2a2a;
+  line-height: 1.7;
+  font-size: inherit;
+}
+
 .story-body-single p {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 1.0625rem;
 }
 
-.story-body-single p:last-child {
+.story-body-single p:last-child,
+.story-body-single.story p:last-child {
   margin-bottom: 0;
 }
 
@@ -886,7 +985,7 @@ button.btn:hover {
 }
 
 .industry-copy p:first-child {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(1.85rem, 3vw, 2.35rem);
   font-weight: 400;
   color: var(--text-primary);
@@ -895,14 +994,14 @@ button.btn:hover {
 
 .industry-copy p:last-child {
   margin-bottom: 0;
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--text-primary);
 }
 
 .story-resolution {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -934,7 +1033,7 @@ button.btn:hover {
 
 .price-box-title,
 .price-box h3 {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 28px;
   font-weight: 500;
   margin: 0;
@@ -958,7 +1057,7 @@ button.btn:hover {
 }
 
 .pricing-hero-card .pricing-hero-title {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.5rem;
   font-weight: 500;
   margin: 0 0 0.5rem;
@@ -1005,7 +1104,7 @@ button.btn:hover {
 }
 
 .pricing-hero-card .pricing-hero-price {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 2rem;
   font-weight: 500;
   margin: 0;
@@ -1081,7 +1180,7 @@ button.btn:hover {
 .why-conclusion {
   margin: 2rem 0 0;
   text-align: center;
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.15rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -1170,7 +1269,7 @@ button.btn:hover {
 }
 
 .flow-step-vertical {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
   color: var(--text-primary);
@@ -1214,7 +1313,7 @@ button.btn:hover {
 }
 
 .pricing-amount {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 2.75rem;
   font-weight: 500;
   margin: 0 0 0.25rem;
@@ -1337,7 +1436,7 @@ button.btn:hover {
 
 .audience-block-brands h3,
 .audience-block-retailers h3 {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.1rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -1390,7 +1489,7 @@ button.btn:hover {
 
 .audience-closing {
   margin: 0;
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--text-primary);
@@ -1816,10 +1915,6 @@ button.btn:hover {
 
   .footer-meta {
     text-align: left;
-  }
-
-  .section {
-    padding: var(--section-gap-mobile) 0;
   }
 
   .hero {

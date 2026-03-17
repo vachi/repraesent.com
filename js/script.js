@@ -1,5 +1,18 @@
 const startSiteScripts = () => {
   const header = document.querySelector('.site-header');
+
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const fadeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  fadeElements.forEach((el) => fadeObserver.observe(el));
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   const navToggle = document.querySelector('.nav-toggle');
   const siteNav = document.querySelector('.site-nav');
