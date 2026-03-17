@@ -597,6 +597,20 @@ button.btn:hover {
   font-size: 0.98rem;
 }
 
+.hr {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 60px 0;
+}
+
+.components-group-ongoing {
+  opacity: 0.95;
+}
+
+.components-group-onetime {
+  opacity: 0.9;
+}
+
 /* How it works */
 .flow-diagram {
   display: flex;
