@@ -1,0 +1,18 @@
+# .htaccess (static site / no WordPress)
+
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# (optional) cache common assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/png "access plus 365 days"
+  ExpiresByType image/jpeg "access plus 365 days"
+  ExpiresByType image/svg+xml "access plus 365 days"
+  ExpiresByType font/woff2 "access plus 365 days"
+</IfModule>
