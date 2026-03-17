@@ -1,4 +1,4 @@
-/* repraesent.com v0.2.8 — Design tokens & base
+/* repraesent.com v0.2.9 — Design tokens & base
  *
  * TYPOGRAPHY SCALE
  * H1 (hero):    clamp(3rem, 6vw, 4.5rem), lh 1.1, serif
@@ -23,8 +23,8 @@
   --bg-primary: #FAF9F6;
   --bg-secondary: #F5F3EF;
   --text-primary: #252320;
-  --text-secondary: #4A4743;
-  --text-muted: #7A7570;
+  --text-secondary: #3d3a36;
+  --text-muted: #6b6560;
   --accent: #5C6B5C;
   --accent-hover: #4D5B4D;
   --accent-warm: #A89B7E;
@@ -266,11 +266,23 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 }
 
 .hero-inner {
-  max-width: 1050px;
+  max-width: 1200px;
 }
 
+.hero h1,
 .hero-title {
+  font-size: clamp(32px, 4vw, 64px);
+  white-space: nowrap;
+  text-wrap: balance;
   margin-bottom: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .hero h1,
+  .hero-title {
+    white-space: normal;
+    line-height: 1.1;
+  }
 }
 
 .hero-text {
@@ -288,12 +300,14 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   max-width: 38ch;
 }
 
-.btn {
+.btn,
+a.btn,
+button.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: #18181b;
-  color: #fff;
+  color: white;
   padding: 12px 20px;
   border-radius: 6px;
   font: inherit;
@@ -303,10 +317,11 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   transition: all 0.2s ease;
 }
 
-.btn:hover {
-  background: #000;
-  color: #fff;
+.btn:hover,
+a.btn:hover,
+button.btn:hover {
   opacity: 0.9;
+  color: white;
 }
 
 .btn:focus-visible {
@@ -431,6 +446,7 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   border-radius: 6px;
   padding: 1.5rem;
   background: var(--bg-primary);
+  box-shadow: none;
 }
 
 .included-cards .included-group.card {
@@ -514,8 +530,31 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   gap: 1.25rem;
 }
 
-.product-cards.grid-3col {
+.product-cards-included {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.product-cards.grid-3col,
+.product-cards-merged {
   grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+}
+
+.product-cards-merged .product-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.product-cards-merged .product-card-price {
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .product-cards-included {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .product-card {
@@ -718,7 +757,7 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   opacity: 0.6;
 }
 
-/* Story section — 2-column editorial */
+/* Story section — editorial style */
 .story-section {
   border-top: 1px solid var(--border);
 }
@@ -782,14 +821,42 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   max-width: 800px;
 }
 
+.story {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.story h2 {
+  font-family: "Lora", Georgia, serif;
+  font-style: normal;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.story p {
+  margin-bottom: 16px;
+}
+
+.story p:last-child {
+  margin-bottom: 0;
+}
+
 .story-body-single {
   max-width: 800px;
 }
 
+.story-body-single.story {
+  font-style: italic;
+}
+
 .story-body-single p {
-  margin: 0 0 0.75rem;
+  margin: 0 0 16px;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
   font-size: 1.0625rem;
 }
 
@@ -826,6 +893,38 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   font-weight: 500;
   color: var(--text-primary);
   margin: 1.5rem 0 0 !important;
+}
+
+/* Card main — Digital Business Presence */
+.card-main.pricing-hero-card {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  padding: 40px;
+}
+
+.card-main .btn {
+  display: inline-flex;
+  margin-top: 1rem;
+}
+
+/* Price box sub-card */
+.price-box {
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.price-box-title,
+.price-box h3 {
+  font-family: "Lora", Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
 }
 
 /* Pricing hero card */
@@ -990,7 +1089,6 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 }
 
 .client-card-image {
-  aspect-ratio: 16 / 10;
   background: var(--bg-secondary);
   display: flex;
   align-items: center;
@@ -998,10 +1096,12 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   overflow: hidden;
 }
 
+.client-card img,
 .client-card-image img {
   width: 100%;
-  height: 100%;
+  height: 220px;
   object-fit: cover;
+  object-position: top;
 }
 
 .client-card-image span {
@@ -1794,7 +1894,8 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
     grid-template-columns: 1fr;
   }
 
-  .product-cards.grid-3col {
+  .product-cards.grid-3col,
+  .product-cards-merged {
     grid-template-columns: 1fr;
   }
 
