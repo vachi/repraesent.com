@@ -1,4 +1,4 @@
-/* repraesent.com v0.4.0 — Design tokens & base
+/* repraesent.com v0.4.1 — Design tokens & base
  *
  * TYPOGRAPHY SCALE
  * H1 (hero):    clamp(3rem, 6vw, 4.5rem), lh 1.1, serif
@@ -368,6 +368,11 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   max-width: 38ch;
 }
 
+.hero .btn {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+}
+
 .btn,
 a.btn,
 button.btn {
@@ -402,6 +407,19 @@ button.btn:active {
 .btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.btn-secondary,
+a.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+}
+
+.btn-secondary:hover,
+a.btn-secondary:hover {
+  background: var(--text-primary);
+  color: white;
 }
 
 /* Sections */
@@ -1888,60 +1906,6 @@ section {
   justify-content: center;
 }
 
-/* Placeholder image containers */
-.placeholder-img {
-  background: var(--bg-secondary);
-  border: 2px dashed var(--border-strong);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.placeholder-img::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(37, 35, 32, 0.02) 10px,
-    rgba(37, 35, 32, 0.02) 20px
-  );
-}
-
-.placeholder-img-16x9 {
-  aspect-ratio: 16 / 9;
-}
-
-.placeholder-img-4x3 {
-  aspect-ratio: 4 / 3;
-}
-
-.placeholder-img-icon {
-  display: inline-flex;
-  color: var(--text-muted);
-  opacity: 0.5;
-  position: relative;
-  z-index: 1;
-}
-
-.placeholder-img-label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  opacity: 0.7;
-  position: relative;
-  z-index: 1;
-}
 
 /* Objection handling section */
 .objections-section {
@@ -2025,11 +1989,6 @@ section {
   margin-bottom: 0.75rem;
 }
 
-/* Audience placeholder images */
-.audience-block-brands .placeholder-img,
-.audience-block-retailers .placeholder-img {
-  margin-top: 1.25rem;
-}
 
 /* Responsive */
 @media (max-width: 760px) {
